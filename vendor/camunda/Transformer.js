@@ -1,6 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-
 /**
  * The BPMN 2.0 transformer module
  *
@@ -40,8 +37,6 @@ function getXmlObject(source) {
 var Transformer = function () {
     this.parseListeners = [];
 };
-
-module.exports = Transformer;
 
 Transformer.prototype.transform = function (source) {
 
@@ -224,7 +219,6 @@ Transformer.prototype.transform = function (source) {
         }
         while (element = element.nextSibling)
     }
-
 
     function transformEvent(element, scope, sequenceFlows, bpmnDiElementIndex) {
         // the ActivityDefinition to be built
@@ -431,7 +425,7 @@ Transformer.prototype.transform = function (source) {
             }
 
         } while (element = element.nextSibling);
-    };
+    }
 
     /** transforms a <process ... /> element into the corresponding Javascript Object */
     function transformProcess(processElement, bpmnDiElementIndex) {
@@ -450,7 +444,7 @@ Transformer.prototype.transform = function (source) {
         generatedElements.push(bpmnObject);
 
         invokeParseListeners(bpmnObject, processElement);
-    };
+    }
 
     function transformElementsContainer(containerElement, scope, sequenceFlows, bpmnDiElementIndex) {
         var containerObject = createFlowElement(containerElement, scope, sequenceFlows, bpmnDiElementIndex);
@@ -459,7 +453,7 @@ Transformer.prototype.transform = function (source) {
         transformScope(containerElement, containerObject, bpmnDiElementIndex);
 
         invokeParseListeners(containerObject, containerElement);
-    };
+    }
 
     function transformDiElementToObject(element, object) {
         var properties = {};
@@ -631,4 +625,4 @@ function error(message) {
     return new Error(message);
 }
 
-
+module.exports = Transformer;
